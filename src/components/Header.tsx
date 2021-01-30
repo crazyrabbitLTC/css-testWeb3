@@ -13,8 +13,7 @@ export const shortAddress = (address: string, initialLength = 6, endLength = -4)
 export default function Header({ }: Props): ReactElement {
 
 
-    const { chainId, currentBlock, etherBalance ,isWeb3Ready, openMetamask, signerAddress } = useWeb3();
-    console.log("🚀 ~ file: Header.tsx ~ line 15 ~ Header ~ signerAddress", signerAddress)
+    const { etherBalance ,isWeb3Ready, openMetamask, signerAddress } = useWeb3();
     return (
         <>
             <Flex color="blue" justifyContent="flex-end" alignItems="center" margin="15px">
