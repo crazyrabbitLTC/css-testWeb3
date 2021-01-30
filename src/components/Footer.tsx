@@ -10,17 +10,15 @@ interface Props {
 export const shortAddress = (address: string, initialLength = 6, endLength = -4): string =>
   `${address.slice(0, initialLength)}...${address.slice(endLength)}`;
 
-export default function Header({ }: Props): ReactElement {
+export default function Footer({ }: Props): ReactElement {
 
 
-    const { etherBalance ,isWeb3Ready, openMetamask, signerAddress } = useWeb3();
+    const { isWeb3Ready, signerAddress } = useWeb3();
     return (
         <>
-            <Flex color="blue" justifyContent="flex-end" alignItems="center" margin="15px">
+            <Flex color="blue" justifyContent="flex-end" alignItems="center" >
                 <HStack spacing="20px">
-                    <Text>{etherBalance ? Number(etherBalance).toFixed(2) : "0.0"}ETH</Text>
-                    <Button onClick={() => openMetamask()}>{isWeb3Ready ? "Connected" : "Connect Metamask"}</Button>
-                    <ColorModeSwitcher />
+                    <Text fontSize="s" color="gray.500"> {isWeb3Ready && signerAddress ? signerAddress : null}</Text>
                 </HStack>
             </Flex>
 
