@@ -172,7 +172,7 @@ const useWeb3Constate = (): Values => {
                     reference: 'Weth',
                     contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
                     abi: [{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}, {"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}],
-                    calls: [{ reference: 'Approval', methodName: 'name', methodParameters: [] },{ reference: 'WethName', methodName: 'name', methodParameters: [] }],
+                    calls: [{ reference: 'Approval', methodName: 'allowance', methodParameters: ["0x32a5bbE726C7b2e8746E5A508A08870f0Ad3d1f2", "0x32a5bbE726C7b2e8746E5A508A08870f0Ad3d1f2"] },{ reference: 'WethName', methodName: 'name', methodParameters: [] }],
                     context: {
                         extraContext: 'extraContext',
                         foo4: true
