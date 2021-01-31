@@ -5,6 +5,8 @@ import {
   GridItem,
   Grid,
   theme,
+  Image,
+  Flex,
   Button
 } from "@chakra-ui/react"
 
@@ -27,17 +29,19 @@ export const App = () => {
           <Header />
           <Grid templateColumns="1fr 2fr 1fr"
             gap={4} templateRows="1fr 2fr 1fr">
-            <GridItem bg="purple.500">  </GridItem>
+            <GridItem >
+              <Flex height="100%" justifyContent="flex-end" alignItems="flex-end">
+                <Image src="/Tally_logo.png" boxSize="100px" objectFit="scale-down"/></Flex></GridItem>
             <GridItem bg="blue.500">  </GridItem>
             <GridItem bg="red.500">  </GridItem>
             <GridItem bg="yellow.500">  </GridItem>
-            <Center/>
+            <Center />
             <GridItem bg="orange.500">  </GridItem>
             <GridItem bg="purple.500">  </GridItem>
             <GridItem bg="green.500">  </GridItem>
             <GridItem bg="orange.500">  </GridItem>
           </Grid>
-          <Footer/>
+          <Footer />
         </Grid>
       </Box>
     </ChakraProvider>

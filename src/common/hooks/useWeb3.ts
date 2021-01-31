@@ -1,9 +1,17 @@
 // @ts-nocheck
 import { useState, useEffect, useMemo } from 'react';
 import { useToast } from '@chakra-ui/react';
-import { Contract, ethers, providers } from 'ethers';
+import { Contract, ethers } from 'ethers';
 import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
 import { Provider } from '@ethersproject/providers';
+
+import {
+    Multicall,
+    ContractCallResults,
+    ContractCallContext,
+} from 'ethereum-multicall';
+
+
 import constate from 'constate';
 
 type Values = {
@@ -16,10 +24,11 @@ type Values = {
     contractInstance?: Contract;
     currentBlock?: number;
     etherBalance?: string;
+    multiCall?: ContractCallResults;
 };
 
 const contract = {
-    address: "", 
+    address: "",
     abi: ""
 }
 
@@ -36,6 +45,7 @@ const useWeb3Constate = (): Values => {
     const [contractInstance, setcontractInstance] = useState<Contract | undefined>(undefined);
     const [signerAddress, setSignerAddress] = useState<string>('');
     const [isWeb3Ready, setIsWeb3Ready] = useState<boolean>(false);
+    const [multiCall, setmultiCall] = useState<ContractCallResults | null>(null);
 
     // variables
     const signer = useMemo(() => {
@@ -150,6 +160,38 @@ const useWeb3Constate = (): Values => {
             window.ethereum.autoRefreshOnNetworkChange = false;
         }
     }, []);
+
+
+    useEffect(() => {
+        if (isWeb3Ready) {
+
+            const multicall = new Multicall({ ethersProvider: web3Provider });
+
+            const contractCallContext: ContractCallContext<{ extraContext: string, foo4: boolean }>[] = [
+                {
+                    reference: 'Weth',
+                    contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+                    abi: [{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}, {"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}],
+                    calls: [{ reference: 'Approval', methodName: 'name', methodParameters: [] },{ reference: 'WethName', methodName: 'name', methodParameters: [] }],
+                    context: {
+                        extraContext: 'extraContext',
+                        foo4: true
+                    }
+                }
+            ];
+
+            const checkBlockchain = async () => {
+                const results: ContractCallResults = await multicall.call(contractCallContext);
+                console.log("The Results: ", results);
+    
+                setmultiCall(results);
+            }
+
+            checkBlockchain()
+
+        }
+
+    }, [isWeb3Ready])
 
     return {
         web3: web3Provider,

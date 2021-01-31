@@ -1970,7 +1970,7 @@
   dependencies:
     "@ethersproject/logger" "^5.0.8"
 
-"@ethersproject/providers@5.0.19":
+"@ethersproject/providers@5.0.19", "@ethersproject/providers@^5.0.10":
   version "5.0.19"
   resolved "https://registry.yarnpkg.com/@ethersproject/providers/-/providers-5.0.19.tgz#94c8f1a86755ee4187911fc6250e94b1116c089a"
   integrity sha512-G+flo1jK1y/rvQy6b71+Nu7qOlkOKz+XqpgqFMZslkCzGuzQRmk9Qp7Ln4soK8RSyP1e5TCujaRf1H+EZahoaw==
@@ -6113,6 +6113,14 @@ ethereum-cryptography@^0.1.3:
     secp256k1 "^4.0.1"
     setimmediate "^1.0.5"
 
+ethereum-multicall@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ethereum-multicall/-/ethereum-multicall-2.0.1.tgz#55060b07897a7a4ab62417832d059517bd917ea1"
+  integrity sha512-ghe6ng+ERYr6P2LikH6oplf6vIj58/lUI0wNEc38c2H2tR7/4zE/1uCgTBeaAMGEb/r3pql0glSBEO/aad2jvA==
+  dependencies:
+    "@ethersproject/providers" "^5.0.10"
+    ethers "^5.0.15"
+
 ethereumjs-abi@0.6.5:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/ethereumjs-abi/-/ethereumjs-abi-0.6.5.tgz#5a637ef16ab43473fa72a29ad90871405b3f5241"
@@ -6264,7 +6272,7 @@ ethers@^4.0.46:
     uuid "2.0.1"
     xmlhttprequest "1.8.0"
 
-ethers@^5.0.26:
+ethers@^5.0.15, ethers@^5.0.26:
   version "5.0.26"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.0.26.tgz#ef43c6b6aad71f10c1a184003f69b142d7d03bae"
   integrity sha512-MqA8Fvutn3qEW0yBJOHeV6KZmRpF2rqlL2B5058AGkUFsuu6j5Ns/FRlMsbGeQwBz801IB23jQp7vjRfFsKSkg==
